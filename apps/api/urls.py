@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserListCreateView, UserDetailsView, TodoListCreateView, TodoDetailsView
+from .views import UserListCreateView, UserDetailsView, TodoListCreateView, TodoDetailsView, DeleteUserTodosView
 
 urlpatterns = [
     path('users/', UserListCreateView.as_view(), name='user-list-create'),
