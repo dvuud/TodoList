@@ -7,9 +7,10 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан в')
     username = models.CharField(max_length=50, verbose_name='Никнейм', blank=True, null=True)
     email = models.EmailField(verbose_name='Эл.почта')
+    phone_number = models.CharField(validators=[phone_regex], max_length=15, verbose_name='Номер телефона')
     def __str__(self):
         return f'Пользователи'
-    class Meat:
+    class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
     
