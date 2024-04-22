@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import User, Todo
+from django.utils.safestring import mark_safe
 # Register your models here.
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
