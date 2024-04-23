@@ -5,7 +5,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'phone_number', 'age', 'created_at', 'password',]
-        
+        # REgister
 class RegisterSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(max_length=255, write_only=True, label='Подтверждения пароля')
     class Meta:
