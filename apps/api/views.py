@@ -11,7 +11,6 @@ class UserListCreateView(generics.ListCreateAPIView):
     serializer_class = UserSerializer
 
     def get_serializer_class(self):
-        print(self.request.method == "POST")
         if self.request.method == "POST":
             return RegisterSerializer
         return UserSerializer
@@ -35,5 +34,5 @@ class DeleteUserTodosView(APIView):
     permission_classes = [IsAuthenticated]
 
     def delete(self, request):
-        request.user.todo_set.all().delete()
+        Todo.objects.filter(user=request.user).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
