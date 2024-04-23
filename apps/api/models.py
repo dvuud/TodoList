@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator 
 from django.contrib.auth.models import AbstractUser
-
+# My model
 phone_regex = RegexValidator(regex=r'^\+996\d{9}$', message="Номер телефона необходимо ввести в формате: '+996xxxxxxxxx'.")
 
 class User(AbstractUser):
