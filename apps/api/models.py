@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     phone_regex = RegexValidator(regex=r'^\+996\d{9}$', message="Номер телефона необходимо ввести в формате: '+996xxxxxxxxx'.")
-    age = models.DecimalField(verbose_name='Возраст', decimal_places=2, max_digits=10, blank=True, null=True)
+    age = models.PositiveIntegerField(verbose_name='Возраст')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан в')
     email = models.EmailField(verbose_name='Эл.почта')
     phone_number = models.CharField(validators=[phone_regex], max_length=15, verbose_name='Номер телефона')

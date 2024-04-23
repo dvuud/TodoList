@@ -4,11 +4,17 @@ from .models import User, Todo
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserSerializer, TodoSerializer
+from .serializers import *
 # Create your views here.
 class UserListCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_serializer_class(self):
+        print(self.request.method == "POST")
+        if self.request.method == "POST":
+            return RegisterSerializer
+        return UserSerializer
 
 class UserDetailsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
