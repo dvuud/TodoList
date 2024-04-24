@@ -1,11 +1,12 @@
 from django.db import models
 from django.core.validators import RegexValidator 
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 # My model
 phone_regex = RegexValidator(regex=r'^\+996\d{9}$', message="Номер телефона необходимо ввести в формате: '+996xxxxxxxxx'.")
-
 class User(AbstractUser):
     phone_number = models.CharField(validators=[phone_regex], max_length=15, verbose_name='Номер телефона')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
     def __str__(self):
         return f'Пользователи'
     class Meta:
@@ -14,7 +15,7 @@ class User(AbstractUser):
     
 
 class Todo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     title = models.CharField(max_length=100, unique=True, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     is_completed = models.BooleanField(default=False,verbose_name='Выполнен' )

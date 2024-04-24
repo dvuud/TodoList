@@ -4,13 +4,13 @@ from .models import User, Todo
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'phone_number', 'age', 'created_at', 'password',]
+        fields = ['id', 'username', 'email', 'phone_number','created_at', 'password',]
         # REgister
 class RegisterSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(max_length=255, write_only=True, label='Подтверждения пароля')
     class Meta:
         model = User 
-        fields = ['id', 'username','email','age','password', 'confirm_password']
+        fields = ['id', 'username','email','password', 'confirm_password']
         
     def validate(self, attrs):
         if attrs['password'] != attrs['confirm_password']:
@@ -19,8 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data['username'],
-            age=validated_data['age'],
+            username=validated_data['username'] 
             
         )
         user.set_password(validated_data['password'])

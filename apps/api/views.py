@@ -34,5 +34,6 @@ class DeleteUserTodosView(APIView):
     permission_classes = [IsAuthenticated]
 
     def delete(self, request):
-        Todo.objects.filter(user=request.user).delete()
+        todos_to_delete = Todo.objects.filter(user=request.user)
+        todos_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

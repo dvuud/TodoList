@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 @admin.register(Todo)
 class TodoAdmin(admin.ModelAdmin):
     list_display = ['title', 'image_show', 'description', 'is_completed', 'created_at']
-    
+    list_filter = ['title']
     # Эта функция позволяет видеть картинку в админ панеле
     
     def image_show(self, obj):
@@ -16,4 +16,5 @@ class TodoAdmin(admin.ModelAdmin):
     
 @admin.register(User)
 class AdminUSer(admin.ModelAdmin):
-    list_display = ['username', 'email', 'phone_number']
+    list_filter = ['username']
+    list_display = ['username', 'email', 'phone_number', 'created_at']
