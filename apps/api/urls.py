@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserListCreateView, UserDetailsView, TodoListCreateView, TodoDetailsView, DeleteUserTodosView
+from .views import UserListCreateView, UserDetailsView, TodoListCreateView, TodoDetailsView
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView 
 
 urlpatterns = [
@@ -10,6 +10,5 @@ urlpatterns = [
     path('users/<int:pk>/', UserDetailsView.as_view(), name='user-details'),
     path('todos/', TodoListCreateView.as_view(), name='todo-list-create'),
     path('todos/<int:pk>/', TodoDetailsView.as_view(), name='todo-details'),
-    path('todos/delete/', DeleteUserTodosView.as_view(), name='delete-user-todos'),
 
 ]

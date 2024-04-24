@@ -30,10 +30,3 @@ class TodoDetailsView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TodoSerializer
     permission_classes = [IsAuthenticated]
     
-class DeleteUserTodosView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def delete(self, request):
-        todos_to_delete = Todo.objects.filter(user=request.user)
-        todos_to_delete.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
